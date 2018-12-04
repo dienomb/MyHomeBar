@@ -1,9 +1,23 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2050
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28315.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyHomeBar.Domain", "MyHomeBar.Domain\MyHomeBar.Domain.csproj", "{3A36A7BD-C8FB-4F16-8E55-9123C54863DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyHomeBar.Domain", "src\MyHomeBar.Domain\MyHomeBar.Domain.csproj", "{3A36A7BD-C8FB-4F16-8E55-9123C54863DF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyHomeBar.Application", "src\MyHomeBar.Application\MyHomeBar.Application.csproj", "{F8D2BB25-9B0C-4731-9B01-2428E3B60DCB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyHomeBar.Infrastructure", "src\MyHomeBar.Infrastructure\MyHomeBar.Infrastructure.csproj", "{DB2814B2-5BF3-4694-9D5A-7D6048A8BB0D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyHomeBar.Api", "src\MyHomeBar.Api\MyHomeBar.Api.csproj", "{7A1E0F5D-4D39-4C11-B7C3-4FBA29658E33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyHomeBar.Host", "src\MyHomeBar.Host\MyHomeBar.Host.csproj", "{3DD80D00-DACB-48BC-BDCC-AD47BBBC3248}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{3B1E8B1D-699B-438D-8F13-486C0144BB1C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{1FC63C5D-8360-4007-810B-250CD57CB3F8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{9C69F641-25B6-43EF-83CA-4FF2D43E2C91}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +29,32 @@ Global
 		{3A36A7BD-C8FB-4F16-8E55-9123C54863DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A36A7BD-C8FB-4F16-8E55-9123C54863DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A36A7BD-C8FB-4F16-8E55-9123C54863DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8D2BB25-9B0C-4731-9B01-2428E3B60DCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8D2BB25-9B0C-4731-9B01-2428E3B60DCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8D2BB25-9B0C-4731-9B01-2428E3B60DCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8D2BB25-9B0C-4731-9B01-2428E3B60DCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB2814B2-5BF3-4694-9D5A-7D6048A8BB0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB2814B2-5BF3-4694-9D5A-7D6048A8BB0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB2814B2-5BF3-4694-9D5A-7D6048A8BB0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB2814B2-5BF3-4694-9D5A-7D6048A8BB0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A1E0F5D-4D39-4C11-B7C3-4FBA29658E33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A1E0F5D-4D39-4C11-B7C3-4FBA29658E33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A1E0F5D-4D39-4C11-B7C3-4FBA29658E33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A1E0F5D-4D39-4C11-B7C3-4FBA29658E33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DD80D00-DACB-48BC-BDCC-AD47BBBC3248}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DD80D00-DACB-48BC-BDCC-AD47BBBC3248}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DD80D00-DACB-48BC-BDCC-AD47BBBC3248}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DD80D00-DACB-48BC-BDCC-AD47BBBC3248}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3A36A7BD-C8FB-4F16-8E55-9123C54863DF} = {3B1E8B1D-699B-438D-8F13-486C0144BB1C}
+		{F8D2BB25-9B0C-4731-9B01-2428E3B60DCB} = {3B1E8B1D-699B-438D-8F13-486C0144BB1C}
+		{DB2814B2-5BF3-4694-9D5A-7D6048A8BB0D} = {1FC63C5D-8360-4007-810B-250CD57CB3F8}
+		{7A1E0F5D-4D39-4C11-B7C3-4FBA29658E33} = {9C69F641-25B6-43EF-83CA-4FF2D43E2C91}
+		{3DD80D00-DACB-48BC-BDCC-AD47BBBC3248} = {9C69F641-25B6-43EF-83CA-4FF2D43E2C91}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D8B310A2-3728-423A-A9EF-5C4AC0E6BF36}
