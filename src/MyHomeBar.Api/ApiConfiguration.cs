@@ -1,5 +1,6 @@
 ﻿using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using MyHomeBar.Api.Filters;
 using System;
@@ -15,6 +16,7 @@ namespace MyHomeBar.Api
                     .AddJsonFormatters()
                     .AddApiExplorer()
                     .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ValidModelStateFilter>())
+                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                     .Services;
         }
 
