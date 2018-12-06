@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using MyHomeBar.Logging;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,18 @@ namespace Microsoft.Extensions.DependencyInjection
                 });
             });
 
+            return services;
+        }
+
+        public static IServiceCollection AddHomeBarLogging(this IServiceCollection services)
+        {
+            var log = services.BuildServiceProvider();
+            var test = log.GetService<Serilog.ILogger>();
+            services
+                .AddSingleton<ILogger>(sp => 
+                {
+                    return new SerilogAdapter(sp.GetService<Serilog.ILogger>());
+                });
             return services;
         }
     }

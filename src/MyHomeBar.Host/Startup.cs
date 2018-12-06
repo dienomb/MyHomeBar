@@ -27,21 +27,23 @@ namespace MyHomeBar.Host
         public void ConfigureServices(IServiceCollection services)
         {
             ApiConfiguration.ConfigureServices(services)
+                .AddHomeBarLogging()
                 .AddOpenApi();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
+            ApiConfiguration.Configure(
+               app,
+               host => host
+                   .UseCustomExceptionMiddleware()
+                   .UseSwagger()
+                   .UseSwaggerUI(setup =>
+                   {
+                       setup.SwaggerEndpoint("/swagger/v1/swagger.json", "My Home Bar");
+                   })
+           );
 
             app.UseHttpsRedirection();
             app.UseMvc();
