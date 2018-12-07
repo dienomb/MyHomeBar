@@ -28,12 +28,12 @@ namespace Microsoft.Extensions.DependencyInjection
 
         public static IServiceCollection AddHomeBarLogging(this IServiceCollection services)
         {
-            var log = services.BuildServiceProvider();
-            var test = log.GetService<Serilog.ILogger>();
+            Serilog.ILogger log = Serilog.Log.Logger;
+
             services
                 .AddSingleton<ILogger>(sp => 
                 {
-                    return new SerilogAdapter(sp.GetService<Serilog.ILogger>());
+                    return new SerilogAdapter(log);
                 });
             return services;
         }

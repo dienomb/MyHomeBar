@@ -47,8 +47,8 @@ namespace MyHomeBar.Host
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                    .UseConfiguration(Configuration)
-                   .UseSerilog()
                    .UseStartup<Startup>()
+                   .UseSerilog()
                    .Build();
     }
 }
