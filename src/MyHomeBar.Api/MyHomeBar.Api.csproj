@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\MyHomeBar.Logging\MyHomeBar.Logging.csproj" />
+    <ProjectReference Include="..\MyHomeBar.Logging\MyHomeBar.Logging.csproj" />
     <ProjectReference Include="..\MyHomeBar.Domain\MyHomeBar.Domain.csproj" />
   </ItemGroup>
 

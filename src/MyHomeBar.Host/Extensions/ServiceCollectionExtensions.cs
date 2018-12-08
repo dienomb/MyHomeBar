@@ -1,10 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using MyHomeBar.Logging;
+﻿using MyHomeBar.Logging;
 using Swashbuckle.AspNetCore.Swagger;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Microsoft.Extensions.DependencyInjection
 {

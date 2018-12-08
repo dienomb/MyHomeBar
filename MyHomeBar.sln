@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{9C69F641-25B6-43EF-83CA-4FF2D43E2C91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyHomeBar.Logging", "MyHomeBar.Logging\MyHomeBar.Logging.csproj", "{9BD87561-5F52-40CA-BF48-1801F7E57583}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyHomeBar.Logging", "src\MyHomeBar.Logging\MyHomeBar.Logging.csproj", "{9BD87561-5F52-40CA-BF48-1801F7E57583}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
