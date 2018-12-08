@@ -21,6 +21,7 @@
         {
             try
             {
+                Serilog.Context.LogContext.PushProperty("CorrelationId", "FalseCorrelationId");
                 await next(httpContext);
             }
             catch (Exception ex)

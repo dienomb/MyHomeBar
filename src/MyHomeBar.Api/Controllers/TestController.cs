@@ -1,15 +1,15 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using MyHomeBar.Logging;
 
 namespace MyHomeBar.Api.Controllers
 {
     [ApiController]
     public class TestController : ControllerBase
     {
-        private readonly ILogger<TestController> log;
-        //private readonly ILogger logger;
-        public TestController(ILogger<TestController> log)
+        //private readonly ILogger<TestController> log;
+        private readonly ILogger log;
+        public TestController(ILogger log)
         {
             this.log = log;
         }
@@ -20,7 +20,7 @@ namespace MyHomeBar.Api.Controllers
         {
             //this.logger.Log("hola");
             //Log.Information("In the controller!");
-            this.log.LogInformation("hola");
+            this.log.Log("hola");
             return Ok("TEST");
         }
     }

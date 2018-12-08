@@ -10,22 +10,22 @@ namespace MyHomeBar.Host
         public string Password;
     }
 
-    public class CustomPolicy : IDestructuringPolicy
-    {
-        public bool TryDestructure(object value, ILogEventPropertyValueFactory propertyValueFactory, out LogEventPropertyValue result)
-        {
-            result = null;
+    //public class CustomPolicy : IDestructuringPolicy
+    //{
+    //    public bool TryDestructure(object value, ILogEventPropertyValueFactory propertyValueFactory, out LogEventPropertyValue result)
+    //    {
+    //        result = null;
 
-            if (value is LoginData)
-            {
-                result = new StructureValue(
-                    new List<LogEventProperty>
-                    {
-                        new LogEventProperty("Username", new ScalarValue(((LoginData)value).Username))
-                    });
-            }
+    //        if (value is LoginData)
+    //        {
+    //            result = new StructureValue(
+    //                new List<LogEventProperty>
+    //                {
+    //                    new LogEventProperty("Username", new ScalarValue(((LoginData)value).Username))
+    //                });
+    //        }
 
-            return (result != null);
-        }
-    }
+    //        return (result != null);
+    //    }
+    //}
 }

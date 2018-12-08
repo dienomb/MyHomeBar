@@ -32,7 +32,7 @@ namespace MyHomeBar.Host
                 Log.Information("Args: {a}", args);
 
                 Log.ForContext<Program>().Information("Hello, world!");
-                Log.ForContext<Program>().Error("Hello, world!");
+                Log.ForContext<Program>().Error("Hello, world!");      
                 Log.ForContext(Constants.SourceContextPropertyName, "Microsoft").Warning("Hello, world!");
                 Log.ForContext(Constants.SourceContextPropertyName, "Microsoft").Error("Hello, world!");
                 Log.ForContext(Constants.SourceContextPropertyName, "MyApp.Something.Tricky").Verbose("Hello, world!");
