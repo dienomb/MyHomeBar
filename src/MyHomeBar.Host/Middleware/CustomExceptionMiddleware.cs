@@ -6,13 +6,14 @@
     using System;
     using System.Net;
     using System.Threading.Tasks;
+    using Serilog.Core;
+    using Serilog;
 
     public class CustomExceptionMiddleware
     {
         private readonly RequestDelegate next;
 
-        public CustomExceptionMiddleware(
-            RequestDelegate next)
+        public CustomExceptionMiddleware(RequestDelegate next)
         {
             this.next = next;
         }
@@ -21,12 +22,13 @@
         {
             try
             {
-                Serilog.Context.LogContext.PushProperty("CorrelationId", "FalseCorrelationId");
+                Serilog.Context.LogContext.PushProperty("CorrelationId", "XXXXXXXX");
                 await next(httpContext);
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                await HandleExceptionAsync(httpContext, ex);
+                Log.ForContext(Constants.SourceContextPropertyName, exception.Source).Error(exception, exception.Message);
+                await HandleExceptionAsync(httpContext, exception);
             }
         }
 
