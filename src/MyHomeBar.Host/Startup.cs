@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using MyHomeBar.Api;
 
 namespace MyHomeBar.Host
 {
     public class Startup
     {
+        public const string SigningKey = "InMemorySampleSigningKey";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -27,8 +21,14 @@ namespace MyHomeBar.Host
         public void ConfigureServices(IServiceCollection services)
         {
             ApiConfiguration.ConfigureServices(services)
+                  .AddJwtSimpleServer(setup =>
+                  {
+                      setup.IssuerSigningKey = SigningKey;
+                  })
+                .AddJwtInMemoryRefreshTokenStore()
                 .AddHomeBarLogging()
-                .AddOpenApi();
+                .AddOpenApi()
+                .AddAuthorization();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +43,11 @@ namespace MyHomeBar.Host
                    {
                        setup.SwaggerEndpoint("/swagger/v1/swagger.json", "My Home Bar");
                    })
+                   .UseStaticFiles()
+                   .UseJwtSimpleServer(setup =>
+                    {
+                        setup.IssuerSigningKey = SigningKey;
+                    })
                    .UseHttpsRedirection()
            );
         }

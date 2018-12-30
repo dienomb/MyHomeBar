@@ -1,10 +1,18 @@
-﻿using MyHomeBar.Logging;
+﻿using JWTSimpleServer.Abstractions;
+using MyHomeBar.Host.Authorization;
+using MyHomeBar.Logging;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
     public static class ServiceCollectionExtensions
     {
+
+        public static IServiceCollection AddCustomServices(this IServiceCollection services)
+        {
+            services.AddSingleton<IAuthenticationProvider, CustomAuthenticationProvider>();
+            return services;
+        }
         public static IServiceCollection AddOpenApi(this IServiceCollection services)
         {
             services.AddSwaggerGen(setup =>
