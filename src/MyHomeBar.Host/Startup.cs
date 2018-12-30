@@ -43,10 +43,8 @@ namespace MyHomeBar.Host
                    {
                        setup.SwaggerEndpoint("/swagger/v1/swagger.json", "My Home Bar");
                    })
+                   .UseHttpsRedirection()
            );
-
-            app.UseHttpsRedirection();
-            app.UseMvc();
         }
     }
 }

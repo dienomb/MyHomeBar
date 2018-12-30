@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MyHomeBar.Authorization\MyHomeBar.Authorization.csproj" />
     <ProjectReference Include="..\MyHomeBar.Logging\MyHomeBar.Logging.csproj" />
     <ProjectReference Include="..\MyHomeBar.Domain\MyHomeBar.Domain.csproj" />
   </ItemGroup>

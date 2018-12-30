@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28315.86
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyHomeBar.Domain", "src\MyHomeBar.Domain\MyHomeBar.Domain.csproj", "{3A36A7BD-C8FB-4F16-8E55-9123C54863DF}"
 EndProject
@@ -19,7 +19,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{9C69F641-25B6-43EF-83CA-4FF2D43E2C91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyHomeBar.Logging", "src\MyHomeBar.Logging\MyHomeBar.Logging.csproj", "{9BD87561-5F52-40CA-BF48-1801F7E57583}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyHomeBar.Logging", "src\MyHomeBar.Logging\MyHomeBar.Logging.csproj", "{9BD87561-5F52-40CA-BF48-1801F7E57583}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyHomeBar.Authorization", "src\MyHomeBar.Authorization\MyHomeBar.Authorization.csproj", "{6E78E393-5F0A-43BE-934B-4C5B28D46E7F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{9BD87561-5F52-40CA-BF48-1801F7E57583}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BD87561-5F52-40CA-BF48-1801F7E57583}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BD87561-5F52-40CA-BF48-1801F7E57583}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E78E393-5F0A-43BE-934B-4C5B28D46E7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E78E393-5F0A-43BE-934B-4C5B28D46E7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E78E393-5F0A-43BE-934B-4C5B28D46E7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E78E393-5F0A-43BE-934B-4C5B28D46E7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +68,7 @@ Global
 		{7A1E0F5D-4D39-4C11-B7C3-4FBA29658E33} = {9C69F641-25B6-43EF-83CA-4FF2D43E2C91}
 		{3DD80D00-DACB-48BC-BDCC-AD47BBBC3248} = {9C69F641-25B6-43EF-83CA-4FF2D43E2C91}
 		{9BD87561-5F52-40CA-BF48-1801F7E57583} = {1FC63C5D-8360-4007-810B-250CD57CB3F8}
+		{6E78E393-5F0A-43BE-934B-4C5B28D46E7F} = {1FC63C5D-8360-4007-810B-250CD57CB3F8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D8B310A2-3728-423A-A9EF-5C4AC0E6BF36}
