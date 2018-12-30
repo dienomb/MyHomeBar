@@ -29,10 +29,11 @@ namespace MyHomeBar.Api.IntegrationTest.Specs
         [Test]
         public async Task Only_Users_Over_The_Allowed_Age()
         {
-            var response = await fixture.Server.CreateRequest("api/v1/foo?id=1")
-                 .GetAsync();
+            var response = await fixture.Server.CreateRequest(MyHomeBarAPI.View.Drink("Vodka")).GetAsync();
 
             response.EnsureSuccessStatusCode();
         }
+
+        
     }
 }

@@ -25,14 +25,13 @@ namespace MyHomeBar.Api.IntegrationTest.Infrastructure
             List<Claim> claims = new List<Claim>()
             {
                 new Claim(ClaimTypes.Name,"HttpAPITesting"),
-                new Claim("Permission","Read"),
-                new Claim(ClaimTypes.NameIdentifier, "HB04356"),
+                new Claim(ClaimTypes.NameIdentifier, "Vodka"),
                 new Claim(ClaimTypes.Country, "Spain"),
                 new Claim(ClaimTypes.DateOfBirth, "1971-12-20", ClaimValueTypes.Date),
-                new Claim(ClaimTypes.Email, "hugo.biarge@adidas.com", ClaimValueTypes.Email),
+                new Claim(ClaimTypes.Email, "die@nexo.es", ClaimValueTypes.Email),
                 new Claim(ClaimTypes.Role, "Admin"),
-                new Claim("Department", "CPM"),
-                new Claim("BadgeNumber", "HB04356"),
+                //new Claim("Department", "CPM"),
+                //new Claim("BadgeNumber", "HB04356"),
             };
 
             ClaimsIdentity identity = new ClaimsIdentity(

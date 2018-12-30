@@ -36,17 +36,17 @@ namespace MyHomeBar.Authorization
             // Policy with simple rules. Based in User claims information
             options.AddPolicy(CanAddDrinks, policyBuilder =>
             {
-                policyBuilder.RequireRole("Administrator", "Vendor");
+                policyBuilder.RequireRole("Admin", "Vendor");
             });
 
             options.AddPolicy(CanViewAndServe, policyBuilder =>
             {
-                policyBuilder.RequireRole("Administrator", "Guest");
+                policyBuilder.RequireRole("Admin", "Guest");
             });
 
             options.AddPolicy(CanMakeParties, policyBuilder =>
             {
-                policyBuilder.RequireRole("Administrator");
+                policyBuilder.RequireRole("Admin");
             });
         }
     }

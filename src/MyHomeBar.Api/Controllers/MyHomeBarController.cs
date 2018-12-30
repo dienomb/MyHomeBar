@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 namespace MyHomeBar.Api.Controllers
 {
     [ApiController]
+    [Route("api/v1/[controller]")]
     [Authorize(Policies.Over18Years)]
     public class MyHomeBarController : ControllerBase
     {
@@ -36,7 +37,7 @@ namespace MyHomeBar.Api.Controllers
         [HttpGet("ViewDrink")]
         [Authorize(Policies.CanViewAndServe)]
         [Authorize(Policies.TemporaryPermission)]
-        [Authorize(Policies.IsNotBanned)]
+        //[Authorize(Policies.IsNotBanned)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> ViewDrink([FromQuery] string drinkName)
         {

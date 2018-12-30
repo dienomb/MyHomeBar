@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using MyHomeBar.Api.IntegrationTest.Infrastructure;
-
+using Microsoft.AspNetCore.Mvc;
 
 namespace MyHomeBar.Api.IntegrationTest
 {

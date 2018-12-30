@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using MyHomeBar.Api.Filters;
+using MyHomeBar.Api.TestRepository;
 using MyHomeBar.Authorization;
 using MyHomeBar.Authorization.Handlers;
 using System;
@@ -14,6 +15,8 @@ namespace MyHomeBar.Api
     {
         public static IServiceCollection ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IDrinksRepository, InMemoryProductsRepository>();
+
             services.AddSingleton<IAuthorizationHandler, HasTemporaryPassHandler>();
             services.AddSingleton<IAuthorizationHandler, IsBannedAuthorizationHandler>();
             services.AddSingleton<IAuthorizationHandler, AccessControlHandler>();

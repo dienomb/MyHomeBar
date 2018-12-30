@@ -47,7 +47,6 @@ namespace MyHomeBar.Host
                     {
                         setup.IssuerSigningKey = SigningKey;
                     })
-                   .UseHttpsRedirection()
            );
         }
     }
