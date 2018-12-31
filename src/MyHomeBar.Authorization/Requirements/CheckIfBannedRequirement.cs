@@ -2,7 +2,8 @@
 
 namespace MyHomeBar.Authorization.Requirements
 {
-    public class AccessControlRequirement : IAuthorizationRequirement
+    public class CheckIfBannedRequirement : IAuthorizationRequirement
     {
+ 
     }
 }

@@ -14,13 +14,13 @@ namespace MyHomeBar.Api.IntegrationTest.Specs
     {
         private TestHostFixture fixture;
 
-        [SetUp]
+        [OneTimeSetUp]
         public void Init()
         {
             this.fixture = new TestHostFixture();
         }
 
-        [TearDown]
+        [OneTimeTearDown]
         public void Dispose()
         {
             fixture.Dispose();

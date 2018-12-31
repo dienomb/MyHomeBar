@@ -6,21 +6,25 @@ using System.Threading.Tasks;
 
 namespace MyHomeBar.Authorization.Handlers
 {
-    public class AccessControlHandler : AuthorizationHandler<AccessControlRequirement, Drink>
+    public class AccessContentHandler : AuthorizationHandler<AccessContentRequirement, Drink>
     {
         protected override Task HandleRequirementAsync(
             AuthorizationHandlerContext context,
-            AccessControlRequirement requirement,
+            AccessContentRequirement requirement,
             Drink resource)
         {
-            var nameIdentifierClaim = context.User.FindFirst(ClaimTypes.NameIdentifier);
+            var roleClaim = context.User.FindFirst(ClaimTypes.Role);
 
-            if (nameIdentifierClaim == null)
+            if (roleClaim == null)
             {
                 return Task.CompletedTask;
             }
 
-            if (resource.Name == nameIdentifierClaim.Value)
+            if (roleClaim.Value == "Guest" && resource.Scale == requirement.scale)
+            {
+                return Task.CompletedTask;
+            }
+            else
             {
                 context.Succeed(requirement);
             }

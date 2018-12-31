@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using MyHomeBar.Api.TestRepository;
 using MyHomeBar.Authorization;
 using MyHomeBar.Authorization.Requirements;
+using MyHomeBar.Domain.Entities;
 using MyHomeBar.Domain.Exceptions;
 using MyHomeBar.Logging;
 using Serilog;
@@ -36,8 +37,8 @@ namespace MyHomeBar.Api.Controllers
 
         [HttpGet("ViewDrink")]
         [Authorize(Policies.CanViewAndServe)]
+        [Authorize(Policies.CheckIfBanned)]
         [Authorize(Policies.TemporaryPermission)]
-        //[Authorize(Policies.IsNotBanned)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> ViewDrink([FromQuery] string drinkName)
         {
@@ -48,7 +49,7 @@ namespace MyHomeBar.Api.Controllers
                 return NotFound();
             }
 
-            var result = await authorizationService.AuthorizeAsync(User, product, new AccessControlRequirement());
+            var result = await authorizationService.AuthorizeAsync(User, product, new AccessContentRequirement(Scale.special));
 
             if (result.Succeeded)
             {
@@ -60,8 +61,8 @@ namespace MyHomeBar.Api.Controllers
 
         [HttpPost("ServeDrink")]
         [Authorize(Policies.CanViewAndServe)]
+        [Authorize(Policies.CheckIfBanned)]
         [Authorize(Policies.TemporaryPermission)]
-        [Authorize(Policies.IsNotBanned)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> ServeDrink([FromQuery] string drinkName)
         {
@@ -72,7 +73,7 @@ namespace MyHomeBar.Api.Controllers
                 return NotFound();
             }
 
-            var result = await authorizationService.AuthorizeAsync(User, product, new AccessControlRequirement());
+            var result = await authorizationService.AuthorizeAsync(User, product, new AccessContentRequirement(Scale.special));
 
             if (result.Succeeded)
             {
@@ -85,7 +86,7 @@ namespace MyHomeBar.Api.Controllers
         [HttpPost("PartyDrinks")]
         [Authorize(Policies.CanViewAndServe)]
         [Authorize(Policies.TemporaryPermission)]
-        [Authorize(Policies.IsNotBanned)]
+        [Authorize(Policies.CheckIfBanned)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult PartyDrinks([FromQuery] string drinkName)
         {

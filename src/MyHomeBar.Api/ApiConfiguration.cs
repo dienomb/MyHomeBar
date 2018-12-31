@@ -18,8 +18,8 @@ namespace MyHomeBar.Api
             services.AddSingleton<IDrinksRepository, InMemoryProductsRepository>();
 
             services.AddSingleton<IAuthorizationHandler, HasTemporaryPassHandler>();
-            services.AddSingleton<IAuthorizationHandler, IsBannedAuthorizationHandler>();
-            services.AddSingleton<IAuthorizationHandler, AccessControlHandler>();
+            services.AddSingleton<IAuthorizationHandler, CheckIfBannedHandler>();
+            services.AddSingleton<IAuthorizationHandler, AccessContentHandler>();
 
             return services
                     .AddMvcCore(config => config.Filters.Add(typeof(ValidModelStateFilter)))

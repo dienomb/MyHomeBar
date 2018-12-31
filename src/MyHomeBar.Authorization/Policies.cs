@@ -10,7 +10,7 @@ namespace MyHomeBar.Authorization
     {
         public const string Over18Years = "Over18Years";
         public const string TemporaryPermission = "TemporaryPermission";
-        public const string IsNotBanned = "IsNotBanned";
+        public const string CheckIfBanned = "IsNotBanned";
         public const string CanAddDrinks = "CanAddDrinks";
         public const string CanMakeParties = "CanMakeParties";
         public const string CanViewAndServe = "CanViewAndServe";
@@ -28,9 +28,9 @@ namespace MyHomeBar.Authorization
                 policyBuilder.AddRequirements(new TemporaryPermissionRequirement());
             });
 
-            options.AddPolicy(IsNotBanned, policyBuilder =>
+            options.AddPolicy(CheckIfBanned, policyBuilder =>
             {
-                policyBuilder.AddRequirements(new IsNotBannedRequirement());
+                policyBuilder.AddRequirements(new CheckIfBannedRequirement());
             });
 
             // Policy with simple rules. Based in User claims information
