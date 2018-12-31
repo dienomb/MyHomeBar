@@ -2,18 +2,19 @@
 using MyHomeBar.Authorization.Requirements;
 using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MyHomeBar.Authorization.Handlers
 {
-    public class HasTemporaryPassHandler : AuthorizationHandler<TemporaryPermissionRequirement>
+    public class HasTemporaryPassHandler : AuthorizationHandler<CanViewAndServeRequirement>
     {
         private const string ExpectedIssuer = "LOCAL AUTHORITY";
 
-        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, TemporaryPermissionRequirement requirement)
+        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, CanViewAndServeRequirement requirement)
         {
-            var temporaryBadgeClaim = context.User.FindFirst(c => c.Type == "TemporaryBadgeExpiry");
+             var temporaryBadgeClaim = context.User.FindFirst(c => c.Type == "TemporaryBadgeExpiry");
 
             if (temporaryBadgeClaim == null)
             {

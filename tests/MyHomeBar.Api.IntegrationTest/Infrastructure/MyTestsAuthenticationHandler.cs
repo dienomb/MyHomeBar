@@ -28,7 +28,7 @@ namespace MyHomeBar.Api.IntegrationTest.Infrastructure
                 new Claim(ClaimTypes.Name,"HttpAPITesting"),
                 new Claim(ClaimTypes.DateOfBirth, "1971-12-20", ClaimValueTypes.Date),
                 new Claim(ClaimTypes.Email, "die@nexo.es", ClaimValueTypes.Email),
-                new Claim(ClaimTypes.Role, "Guest"),
+                new Claim(ClaimTypes.Role, "Vendor"),
                 new Claim("IsBanned", "false", ClaimValueTypes.Boolean),
                 new Claim("TemporaryBadgeExpiry", DateTime.UtcNow.AddDays(1).ToString("O"), ClaimValueTypes.Date),
             };

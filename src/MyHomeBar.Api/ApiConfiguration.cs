@@ -17,6 +17,7 @@ namespace MyHomeBar.Api
         {
             services.AddSingleton<IDrinksRepository, InMemoryProductsRepository>();
 
+            services.AddSingleton<IAuthorizationHandler, IsAdminOrGuestHandler>();
             services.AddSingleton<IAuthorizationHandler, HasTemporaryPassHandler>();
             services.AddSingleton<IAuthorizationHandler, CheckIfBannedHandler>();
             services.AddSingleton<IAuthorizationHandler, AccessContentHandler>();

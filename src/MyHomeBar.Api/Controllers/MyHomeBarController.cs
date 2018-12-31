@@ -38,7 +38,6 @@ namespace MyHomeBar.Api.Controllers
         [HttpGet("ViewDrink")]
         [Authorize(Policies.CanViewAndServe)]
         [Authorize(Policies.CheckIfBanned)]
-        [Authorize(Policies.TemporaryPermission)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> ViewDrink([FromQuery] string drinkName)
         {
@@ -62,7 +61,6 @@ namespace MyHomeBar.Api.Controllers
         [HttpPost("ServeDrink")]
         [Authorize(Policies.CanViewAndServe)]
         [Authorize(Policies.CheckIfBanned)]
-        [Authorize(Policies.TemporaryPermission)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> ServeDrink([FromQuery] string drinkName)
         {
@@ -84,8 +82,7 @@ namespace MyHomeBar.Api.Controllers
         }
 
         [HttpPost("PartyDrinks")]
-        [Authorize(Policies.CanViewAndServe)]
-        [Authorize(Policies.TemporaryPermission)]
+        [Authorize(Policies.CanMakeParties)]
         [Authorize(Policies.CheckIfBanned)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult PartyDrinks([FromQuery] string drinkName)

@@ -9,7 +9,6 @@ namespace MyHomeBar.Authorization
     public static class Policies
     {
         public const string Over18Years = "Over18Years";
-        public const string TemporaryPermission = "TemporaryPermission";
         public const string CheckIfBanned = "IsNotBanned";
         public const string CanAddDrinks = "CanAddDrinks";
         public const string CanMakeParties = "CanMakeParties";
@@ -23,9 +22,9 @@ namespace MyHomeBar.Authorization
                 builder.AddRequirements(new MinimumAgeRequirement(18));
             });
 
-            options.AddPolicy(TemporaryPermission, policyBuilder =>
+            options.AddPolicy(CanViewAndServe, policyBuilder =>
             {
-                policyBuilder.AddRequirements(new TemporaryPermissionRequirement());
+                policyBuilder.AddRequirements(new CanViewAndServeRequirement());
             });
 
             options.AddPolicy(CheckIfBanned, policyBuilder =>
@@ -39,10 +38,6 @@ namespace MyHomeBar.Authorization
                 policyBuilder.RequireRole("Admin", "Vendor");
             });
 
-            options.AddPolicy(CanViewAndServe, policyBuilder =>
-            {
-                policyBuilder.RequireRole("Admin", "Guest");
-            });
 
             options.AddPolicy(CanMakeParties, policyBuilder =>
             {

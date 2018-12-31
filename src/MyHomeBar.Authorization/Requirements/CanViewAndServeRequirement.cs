@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MyHomeBar.Authorization.Requirements
 {
-    public class TemporaryPermissionRequirement : IAuthorizationRequirement
+    public class CanViewAndServeRequirement : IAuthorizationRequirement
     {
     
     }

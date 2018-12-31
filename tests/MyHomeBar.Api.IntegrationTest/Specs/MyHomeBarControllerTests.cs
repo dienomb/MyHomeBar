@@ -27,7 +27,7 @@ namespace MyHomeBar.Api.IntegrationTest.Specs
         }
 
         [Test]
-        public async Task Only_Users_Over_The_Allowed_Age()
+        public async Task Check_if_user_can_view_drink()
         {
             var response = await fixture.Server.CreateRequest(MyHomeBarAPI.View.Drink("Vodka")).GetAsync();
 
