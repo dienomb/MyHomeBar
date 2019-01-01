@@ -14,7 +14,7 @@ namespace MyHomeBar.Authorization.Handlers
 
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, CanViewAndServeRequirement requirement)
         {
-             var temporaryBadgeClaim = context.User.FindFirst(c => c.Type == "TemporaryBadgeExpiry");
+             var temporaryBadgeClaim = context.User.FindFirst(c => c.Type == "TemporaryAccessExpiry");
 
             if (temporaryBadgeClaim == null)
             {

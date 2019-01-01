@@ -30,7 +30,7 @@ namespace MyHomeBar.Api.IntegrationTest.Infrastructure
                 new Claim(ClaimTypes.Email, "die@nexo.es", ClaimValueTypes.Email),
                 new Claim(ClaimTypes.Role, "Vendor"),
                 new Claim("IsBanned", "false", ClaimValueTypes.Boolean),
-                new Claim("TemporaryBadgeExpiry", DateTime.UtcNow.AddDays(1).ToString("O"), ClaimValueTypes.Date),
+                new Claim("TemporaryAccessExpiry", DateTime.UtcNow.AddDays(1).ToString("O"), ClaimValueTypes.Date),
             };
 
             ClaimsIdentity identity = new ClaimsIdentity(

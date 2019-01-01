@@ -1,4 +1,5 @@
 ﻿using MyHomeBar.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -25,7 +26,7 @@ namespace MyHomeBar.Api.TestRepository
 
         public Drink Get(string drinkName)
         {
-            return _products.FirstOrDefault(p => p.Name == drinkName);
+            return _products.FirstOrDefault(s => String.Equals(s.Name, drinkName, StringComparison.CurrentCultureIgnoreCase));
         }
     }
 

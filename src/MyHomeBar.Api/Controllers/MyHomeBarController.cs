@@ -81,11 +81,11 @@ namespace MyHomeBar.Api.Controllers
             return Forbid();
         }
 
-        [HttpPost("PartyDrinks")]
+        [HttpPost("MakeParties")]
         [Authorize(Policies.CanMakeParties)]
         [Authorize(Policies.CheckIfBanned)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult PartyDrinks([FromQuery] string drinkName)
+        public IActionResult MakeParties([FromQuery] string drinkName)
         {
             //_speakerService.AddSpeaker(speaker.Name, speaker.Description);
             return Ok();
@@ -93,8 +93,9 @@ namespace MyHomeBar.Api.Controllers
 
         public class AddDrinkModel
         {
+            public int Id { get; set; }
         }
 
-       
+
     }
 }

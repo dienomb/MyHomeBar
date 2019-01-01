@@ -19,7 +19,7 @@ namespace MyHomeBar.Authorization.Handlers
                 return Task.CompletedTask;
             }
 
-            if (roleClaim.Value == "Admin")
+            if ((roleClaim.Value == "Admin") || (roleClaim.Value == "Guest"))
             {
                 context.Succeed(requirement);
             }

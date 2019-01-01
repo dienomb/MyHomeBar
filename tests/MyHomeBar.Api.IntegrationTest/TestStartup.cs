@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Acheve.AspNetCore.TestHost.Security;
+using Acheve.TestHost;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using MyHomeBar.Api.IntegrationTest.Infrastructure;
-using Microsoft.AspNetCore.Mvc;
 
 namespace MyHomeBar.Api.IntegrationTest
 {
@@ -10,8 +10,13 @@ namespace MyHomeBar.Api.IntegrationTest
         public void ConfigureServices(IServiceCollection services)
         {
             ApiConfiguration.ConfigureServices(services)
-                .AddAuthentication(defaultScheme: "TestServer")
-                .AddScheme<MyTestOptions, MyTestsAuthenticationHandler>("TestServer", _ => { });
+                .AddAuthentication(options =>
+                {
+                    options.DefaultScheme = TestServerAuthenticationDefaults.AuthenticationScheme;
+                })
+              .AddTestServerAuthentication();
+            //.AddAuthentication(defaultScheme: "TestServer")
+            //.AddScheme<MyTestOptions, MyTestsAuthenticationHandler>("TestServer", _ => { });
         }
 
         public void Configure(IApplicationBuilder app)
