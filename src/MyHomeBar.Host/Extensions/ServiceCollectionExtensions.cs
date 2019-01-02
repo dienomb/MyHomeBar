@@ -1,4 +1,7 @@
 ﻿using JWTSimpleServer.Abstractions;
+using Microsoft.AspNetCore.Identity;
+using MyHomeBar.Data;
+using MyHomeBar.Data.Identity;
 using MyHomeBar.Host.Authorization;
 using MyHomeBar.Logging;
 using Swashbuckle.AspNetCore.Swagger;
@@ -39,6 +42,17 @@ namespace Microsoft.Extensions.DependencyInjection
                     return new SerilogAdapter(log);
                 });
             return services;
+        }
+
+        public static IServiceCollection AddIdentity(this IServiceCollection services)
+        {
+            services.AddIdentityCore<ApplicationUser>(options => { });
+            new IdentityBuilder(typeof(ApplicationUser), typeof(IdentityRole), services)
+                .AddRoleManager<RoleManager<IdentityRole>>()
+                .AddSignInManager<SignInManager<ApplicationUser>>()
+                .AddEntityFrameworkStores<MyHomeBarDbContext>();
+            return services;
+
         }
     }
 }

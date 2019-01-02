@@ -12,6 +12,4 @@ namespace MyHomeBar.Domain.Entities
 
         public Scale Scale { get; set; }
     }
-
-    public enum Scale { normal, good, great, special };
 }

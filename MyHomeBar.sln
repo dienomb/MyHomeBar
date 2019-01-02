@@ -27,6 +27,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2B0E95F8
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyHomeBar.Api.IntegrationTest", "tests\MyHomeBar.Api.IntegrationTest\MyHomeBar.Api.IntegrationTest.csproj", "{6320AC84-E455-4450-99EE-7ACA0B1E2F20}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyHomeBar.Data", "src\MyHomeBar.Data\MyHomeBar.Data.csproj", "{4167E6FD-869D-4A27-A905-F76E7852D219}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +67,10 @@ Global
 		{6320AC84-E455-4450-99EE-7ACA0B1E2F20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6320AC84-E455-4450-99EE-7ACA0B1E2F20}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6320AC84-E455-4450-99EE-7ACA0B1E2F20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4167E6FD-869D-4A27-A905-F76E7852D219}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4167E6FD-869D-4A27-A905-F76E7852D219}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4167E6FD-869D-4A27-A905-F76E7852D219}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4167E6FD-869D-4A27-A905-F76E7852D219}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,6 +84,7 @@ Global
 		{9BD87561-5F52-40CA-BF48-1801F7E57583} = {1FC63C5D-8360-4007-810B-250CD57CB3F8}
 		{6E78E393-5F0A-43BE-934B-4C5B28D46E7F} = {1FC63C5D-8360-4007-810B-250CD57CB3F8}
 		{6320AC84-E455-4450-99EE-7ACA0B1E2F20} = {2B0E95F8-6675-4688-843B-0CF0AADF13C2}
+		{4167E6FD-869D-4A27-A905-F76E7852D219} = {1FC63C5D-8360-4007-810B-250CD57CB3F8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D8B310A2-3728-423A-A9EF-5C4AC0E6BF36}

@@ -1,8 +1,12 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MyHomeBar.Api;
+using MyHomeBar.Data;
+using MyHomeBar.Data.Identity;
 
 namespace MyHomeBar.Host
 {
@@ -13,6 +17,15 @@ namespace MyHomeBar.Host
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            var optionsBuilder = new DbContextOptionsBuilder<MyHomeBarDbContext>();
+            optionsBuilder.UseSqlServer(Configuration.GetConnectionString("MyHomeBarConnection"));
+
+            using (var context = new MyHomeBarDbContext(optionsBuilder.Options))
+            {
+                context.Database.EnsureCreated();
+            }
+
         }
 
         public IConfiguration Configuration { get; }
@@ -21,14 +34,22 @@ namespace MyHomeBar.Host
         public void ConfigureServices(IServiceCollection services)
         {
             ApiConfiguration.ConfigureServices(services)
-                  .AddJwtSimpleServer(setup =>
+                 .AddDbContext<MyHomeBarDbContext>(options =>
+                 {
+                     options.UseSqlServer(Configuration.GetConnectionString("MyHomeBarConnection"), sqlOptions =>
+                     {
+                         sqlOptions.MigrationsAssembly(typeof(ApplicationUser).Assembly.GetName().Name);
+                     });
+                 })
+                 .AddIdentity()
+                 .AddJwtSimpleServer(setup =>
                   {
                       setup.IssuerSigningKey = SigningKey;
                   })
                 .AddJwtInMemoryRefreshTokenStore()
                 .AddHomeBarLogging()
                 .AddOpenApi();
-        }
+         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -47,6 +68,7 @@ namespace MyHomeBar.Host
                     {
                         setup.IssuerSigningKey = SigningKey;
                     })
+
            );
         }
     }

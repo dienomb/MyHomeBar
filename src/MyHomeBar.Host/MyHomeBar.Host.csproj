@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MyHomeBar.Api\MyHomeBar.Api.csproj" />
+    <ProjectReference Include="..\MyHomeBar.Data\MyHomeBar.Data.csproj" />
     <ProjectReference Include="..\MyHomeBar.Logging\MyHomeBar.Logging.csproj" />
   </ItemGroup>
 

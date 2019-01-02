@@ -48,8 +48,8 @@ namespace MyHomeBar.Host
 
                 //Log.Information("Destructure with policy to strip password:\n{@LoginData}",
                 //    new LoginData { Username = "BGates", Password = "isityearoflinuxyet" });
-
-                BuildWebHost(args).Run();
+                BuildWebHost(args)
+               .Run();
 
                 return 0;
             }

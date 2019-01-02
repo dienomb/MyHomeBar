@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MyHomeBar.Api.TestRepository;
 using MyHomeBar.Authorization;
 using MyHomeBar.Authorization.Requirements;
+using MyHomeBar.Data.Identity;
 using MyHomeBar.Domain.Entities;
 using MyHomeBar.Domain.Exceptions;
 using MyHomeBar.Logging;
