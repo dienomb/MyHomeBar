@@ -1,6 +1,7 @@
 ﻿using JWTSimpleServer;
 using JWTSimpleServer.Abstractions;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 using MyHomeBar.Data.Identity;
 using System.Collections.Generic;
 using System.Security.Claims;
@@ -10,24 +11,27 @@ namespace MyHomeBar.Host.Authorization
 {
     public class CustomAuthenticationProvider : IAuthenticationProvider
     {
-        private UserManager<ApplicationUser> _userManager = null;
-        private SignInManager<ApplicationUser> _signInManager = null;
+        private readonly IServiceScopeFactory serviceScopeFactory;
+        private UserManager<ApplicationUser> userManager;
+        private SignInManager<ApplicationUser> signInManager;
+        private RoleManager<IdentityRole> roleManager;
 
-
-        public CustomAuthenticationProvider(, UserManager<ApplicationUser> userManager,
-        SignInManager<ApplicationUser> signInManager)
+        public CustomAuthenticationProvider(IServiceScopeFactory serviceScopeFactory)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
+            this.serviceScopeFactory = serviceScopeFactory;
         }
 
-        public Task ValidateClientAuthentication(JwtSimpleServerContext context)
+        public async Task ValidateClientAuthentication(JwtSimpleServerContext context)
         {
-            if (context.UserName == "demo" && context.Password == "demo")
+            if (await this.ValidateUser(context.UserName, context.Password))
             {
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, "demo")
+                    new Claim(ClaimTypes.Name, context.UserName),
+                    new Claim(ClaimTypes.DateOfBirth, "1981-11-07", ClaimValueTypes.Date),
+                    new Claim(ClaimTypes.Email, "die@nexo.es", ClaimValueTypes.Email),
+                    new Claim(ClaimTypes.Role, "Admin"),
+                    new Claim("IsBanned", "false", ClaimValueTypes.Boolean),
                 };
 
                 context.Success(claims);
@@ -36,8 +40,20 @@ namespace MyHomeBar.Host.Authorization
             {
                 context.Reject("Invalid user authentication");
             }
+        }
 
-            return Task.CompletedTask;
+        private async Task<bool> ValidateUser(string user, string password)
+        {
+            using (var scope = serviceScopeFactory.CreateScope())
+            {
+                signInManager = scope.ServiceProvider.GetService<SignInManager<ApplicationUser>>();
+                userManager = scope.ServiceProvider.GetService<UserManager<ApplicationUser>>();
+                roleManager = scope.ServiceProvider.GetService<RoleManager<IdentityRole>>();
+
+                var findUser = await userManager.FindByNameAsync(user);
+                var result = await signInManager.CheckPasswordSignInAsync(findUser, password, false);
+                return result.Succeeded;
+            }
         }
     }
 }

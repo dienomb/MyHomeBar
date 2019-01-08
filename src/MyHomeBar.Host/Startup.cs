@@ -1,12 +1,17 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using JWTSimpleServer.Abstractions;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using MyHomeBar.Api;
 using MyHomeBar.Data;
 using MyHomeBar.Data.Identity;
+using MyHomeBar.Host.Authorization;
+using System;
+using System.Reflection;
 
 namespace MyHomeBar.Host
 {
@@ -18,13 +23,13 @@ namespace MyHomeBar.Host
         {
             Configuration = configuration;
 
-            var optionsBuilder = new DbContextOptionsBuilder<MyHomeBarDbContext>();
-            optionsBuilder.UseSqlServer(Configuration.GetConnectionString("MyHomeBarConnection"));
+            //var optionsBuilder = new DbContextOptionsBuilder<MyHomeBarDbContext>();
+            //optionsBuilder.UseSqlServer(Configuration.GetConnectionString("MyHomeBarConnection"));
 
-            using (var context = new MyHomeBarDbContext(optionsBuilder.Options))
-            {
-                context.Database.EnsureCreated();
-            }
+            //using (var context = new MyHomeBarDbContext(optionsBuilder.Options))
+            //{
+            //    context.Database.EnsureCreated();
+            //}
 
         }
 
@@ -38,10 +43,12 @@ namespace MyHomeBar.Host
                  {
                      options.UseSqlServer(Configuration.GetConnectionString("MyHomeBarConnection"), sqlOptions =>
                      {
-                         sqlOptions.MigrationsAssembly(typeof(ApplicationUser).Assembly.GetName().Name);
+                         sqlOptions.MigrationsAssembly(typeof(MyHomeBarDbContext).GetTypeInfo().Assembly.GetName().Name);
                      });
                  })
                  .AddIdentity()
+                 //.AddScoped<IAuthenticationProvider, CustomAuthenticationProvider>()
+                 .AddSingleton<IAuthenticationProvider, CustomAuthenticationProvider>()
                  .AddJwtSimpleServer(setup =>
                   {
                       setup.IssuerSigningKey = SigningKey;
@@ -54,6 +61,24 @@ namespace MyHomeBar.Host
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+                using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+                {
+                    var services = serviceScope.ServiceProvider;
+                    var loggerFactory = services.GetRequiredService<ILoggerFactory>();
+                    try
+                    {
+                        services.GetService<MyHomeBarDbContext>().Database.Migrate();
+                        var RoleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+                        var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+                        AppIdentityDbContextSeed.SeedAsync(userManager, RoleManager).Wait();
+                    }
+                    catch (Exception ex)
+                    {
+                        var logger = loggerFactory.CreateLogger<Program>();
+                        logger.LogError(ex, "An error occurred seeding the DB.");
+                    }
+                }
+
             ApiConfiguration.Configure(
                app,
                host => host
@@ -68,7 +93,6 @@ namespace MyHomeBar.Host
                     {
                         setup.IssuerSigningKey = SigningKey;
                     })
-
            );
         }
     }

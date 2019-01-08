@@ -8,10 +8,6 @@ namespace MyHomeBar.Data.Identity
     public class ApplicationUser : IdentityUser
     {
         // Extended Properties
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Password { get; set; }
-        public string Profile { get; set; }
         public DateTime BirthDate { get; set; }
         public bool IsBanned { get; set; }
         public string Voucher { get; set; }

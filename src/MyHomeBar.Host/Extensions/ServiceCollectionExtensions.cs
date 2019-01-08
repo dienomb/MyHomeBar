@@ -46,7 +46,13 @@ namespace Microsoft.Extensions.DependencyInjection
 
         public static IServiceCollection AddIdentity(this IServiceCollection services)
         {
-            services.AddIdentityCore<ApplicationUser>(options => { });
+            services.AddIdentityCore<ApplicationUser>(options => {
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 4;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
+            });
             new IdentityBuilder(typeof(ApplicationUser), typeof(IdentityRole), services)
                 .AddRoleManager<RoleManager<IdentityRole>>()
                 .AddSignInManager<SignInManager<ApplicationUser>>()
