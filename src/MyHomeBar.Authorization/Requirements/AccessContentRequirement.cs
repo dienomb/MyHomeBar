@@ -5,11 +5,11 @@ namespace MyHomeBar.Authorization.Requirements
 {
     public class AccessContentRequirement : IAuthorizationRequirement
     {
-        public AccessContentRequirement(Scale scale)
+        public AccessContentRequirement(Level level)
         {
-            this.scale = scale;
+            this.level = level;
         }
 
-        public Scale scale { get; }
+        public Level level { get; }
     }
 }

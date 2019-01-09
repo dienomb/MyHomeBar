@@ -20,7 +20,7 @@ namespace MyHomeBar.Authorization.Handlers
                 return Task.CompletedTask;
             }
 
-            if (roleClaim.Value == "Guest" && resource.Scale == requirement.scale)
+            if (roleClaim.Value == "Guest" && resource.Level == requirement.level)
             {
                 return Task.CompletedTask;
             }

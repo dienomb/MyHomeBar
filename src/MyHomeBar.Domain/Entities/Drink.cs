@@ -10,6 +10,6 @@ namespace MyHomeBar.Domain.Entities
 
         public string Name { get; set; }
 
-        public Scale Scale { get; set; }
+        public Level Level { get; set; }
     }
 }

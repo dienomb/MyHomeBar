@@ -14,15 +14,20 @@ namespace MyHomeBar.Api.TestRepository
             {
                 Id = 1,
                 Name = "Zuica",
-                Scale = Scale.special
+                Level = Level.Special
             },
             new Drink
             {
                 Id = 2,
                 Name = "Vodka",
-                Scale = Scale.normal
+                Level = Level.Normal
             },
         };
+
+        public void Add(Drink drink)
+        {
+            _products.Add(drink);
+        }
 
         public Drink Get(string drinkName)
         {
@@ -33,6 +38,8 @@ namespace MyHomeBar.Api.TestRepository
     public interface IDrinksRepository
     {
         Drink Get(string productNumber);
+
+        void Add(Drink drink);
     }
 
     
