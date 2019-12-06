@@ -24,10 +24,8 @@ namespace MyHomeBar.Api
 
             return services
                     .AddMvcCore(config => config.Filters.Add(typeof(ValidModelStateFilter)))
-                    .AddJsonFormatters()
                     .AddApiExplorer()
                     .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ValidModelStateFilter>())
-                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                     .AddAuthorization(Policies.Configure)
                     .Services;
             // Authorization handlers

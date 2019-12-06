@@ -12,9 +12,9 @@ namespace MyHomeBar.Api.IntegrationTest
             ApiConfiguration.ConfigureServices(services)
                 .AddAuthentication(options =>
                 {
-                    options.DefaultScheme = TestServerAuthenticationDefaults.AuthenticationScheme;
+                    options.DefaultScheme = TestServerDefaults.AuthenticationScheme;
                 })
-              .AddTestServerAuthentication();
+              .AddTestServer();
             //.AddAuthentication(defaultScheme: "TestServer")
             //.AddScheme<MyTestOptions, MyTestsAuthenticationHandler>("TestServer", _ => { });
         }

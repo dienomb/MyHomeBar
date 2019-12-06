@@ -4,7 +4,6 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Serilog;
-using Serilog.Core;
 
 namespace MyHomeBar.Host
 {
@@ -48,7 +47,7 @@ namespace MyHomeBar.Host
 
                 //Log.Information("Destructure with policy to strip password:\n{@LoginData}",
                 //    new LoginData { Username = "BGates", Password = "isityearoflinuxyet" });
-                BuildWebHost(args)
+                BuildWebHost(args).Build()
                .Run();
 
                 return 0;
@@ -64,11 +63,12 @@ namespace MyHomeBar.Host
             }
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                   .UseConfiguration(Configuration)
-                   .UseStartup<Startup>()
-                   .UseSerilog()
-                   .Build();
+        public static IWebHostBuilder BuildWebHost(string[] args)
+        {
+            return WebHost.CreateDefaultBuilder(args)
+                .UseConfiguration(Configuration)
+                .UseStartup<Startup>()
+                .UseSerilog();
+        }
     }
 }

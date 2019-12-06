@@ -19,9 +19,14 @@ namespace MyHomeBar.Host
     {
         public const string SigningKey = "InMemorySampleSigningKey";
 
-        public Startup(IConfiguration configuration)
+        private IConfiguration Configuration { get; }
+        private IWebHostEnvironment CurrentEnvironment { get; }
+
+
+        public Startup(IConfiguration configuration, IWebHostEnvironment currentEnvironment)
         {
             Configuration = configuration;
+            CurrentEnvironment = currentEnvironment;
 
             //var optionsBuilder = new DbContextOptionsBuilder<MyHomeBarDbContext>();
             //optionsBuilder.UseSqlServer(Configuration.GetConnectionString("MyHomeBarConnection"));
@@ -33,7 +38,6 @@ namespace MyHomeBar.Host
 
         }
 
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -59,7 +63,7 @@ namespace MyHomeBar.Host
          }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
                 using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
                 {
@@ -83,6 +87,7 @@ namespace MyHomeBar.Host
                app,
                host => host
                    .UseCustomExceptionMiddleware()
+                   .UseRouting()
                    .UseSwagger()
                    .UseSwaggerUI(setup =>
                    {
@@ -93,6 +98,8 @@ namespace MyHomeBar.Host
                     {
                         setup.IssuerSigningKey = SigningKey;
                     })
+                   .UseAuthentication()
+                   .UseEndpoints(endpoints => { endpoints.MapControllers(); })
            );
         }
     }
