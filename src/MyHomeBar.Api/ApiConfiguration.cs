@@ -33,7 +33,11 @@ namespace MyHomeBar.Api
 
         public static IApplicationBuilder Configure(IApplicationBuilder app, Func<IApplicationBuilder, IApplicationBuilder> configureHost)
         {
-            return configureHost(app).UseMvc();
+            return configureHost(app)
+                .UseRouting()
+                .UseAuthentication()
+                .UseAuthorization()
+                .UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }

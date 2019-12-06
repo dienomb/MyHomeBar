@@ -16,6 +16,7 @@ namespace MyHomeBar.Domain.Entities
         public Country Origin { get; set; }
         public Price Price { get; set; }
         public Scale Scale { get; set; }
-        public bool IsFinish { get; set; }
+        public Level Level { get; set; }
+        public bool IsEmpty { get; set; }
     }
 }
