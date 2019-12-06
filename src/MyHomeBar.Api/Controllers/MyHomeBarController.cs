@@ -34,6 +34,11 @@ namespace MyHomeBar.Api.Controllers
         public IActionResult AddDrink([FromBody] AddDrinkModel drink)
         {
             //_speakerService.AddSpeaker(speaker.Name, speaker.Description);
+            var drinToAddk = new Drink();
+            drinToAddk.Id = drink.Id;
+            drinToAddk.Level = drink.Level;
+            drinToAddk.Name = drink.Name;
+            this.drinksRepository.Add(drinToAddk);
             return CreatedAtAction(nameof(ViewDrink), null);
         }
 
@@ -50,7 +55,7 @@ namespace MyHomeBar.Api.Controllers
                 return NotFound();
             }
 
-            var result = await authorizationService.AuthorizeAsync(User, product, new AccessContentRequirement(Scale.special));
+            var result = await authorizationService.AuthorizeAsync(User, product, new AccessContentRequirement(Level.Special));
 
             if (result.Succeeded)
             {
@@ -73,7 +78,7 @@ namespace MyHomeBar.Api.Controllers
                 return NotFound();
             }
 
-            var result = await authorizationService.AuthorizeAsync(User, product, new AccessContentRequirement(Scale.special));
+            var result = await authorizationService.AuthorizeAsync(User, product, new AccessContentRequirement(Level.Special));
 
             if (result.Succeeded)
             {
@@ -96,6 +101,10 @@ namespace MyHomeBar.Api.Controllers
         public class AddDrinkModel
         {
             public int Id { get; set; }
+
+            public Level Level { get; set; }
+
+            public string Name { get; set; }
         }
 
 
