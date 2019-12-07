@@ -1,5 +1,6 @@
 ﻿using JWTSimpleServer.Abstractions;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.OpenApi.Models;
 using MyHomeBar.Data;
 using MyHomeBar.Data.Identity;
 using MyHomeBar.Host.Authorization;
@@ -22,7 +23,7 @@ namespace Microsoft.Extensions.DependencyInjection
             {
                 setup.DescribeAllParametersInCamelCase();
                 setup.DescribeStringEnumsInCamelCase();
-                setup.SwaggerDoc("v1", new Info
+                setup.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = "My home Bar",
                     Version = "v1"
