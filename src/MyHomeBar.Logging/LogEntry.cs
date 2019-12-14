@@ -8,15 +8,20 @@ namespace MyHomeBar.Logging
         public readonly LoggingEventType Severity;
         public readonly string Message;
         public readonly Exception Exception;
+        /// <summary>
+        ///  Used for structured logging with message templates (Serilog and NLog)
+        /// </summary>
+        public readonly object[] Args;
 
-        public LogEntry(LoggingEventType severity, string message, Exception exception = null)
+        public LogEntry(LoggingEventType severity, string message, Exception exception = null, params object[] args)
         {
             if (message == null) throw new ArgumentNullException("message");
-            if (message == string.Empty) throw new ArgumentException("empty", "message");
+            if (message == string.Empty) throw new ArgumentException("message cannot be empty", "message");
 
-            this.Severity = severity;
-            this.Message = message;
-            this.Exception = exception;
+            Severity = severity;
+            Message = message;
+            Exception = exception;
+            Args = args;
         }
     }
 }

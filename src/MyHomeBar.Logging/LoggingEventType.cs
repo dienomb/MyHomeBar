@@ -1,4 +1,12 @@
 ﻿namespace MyHomeBar.Logging
 {
-    public enum LoggingEventType { Debug, Information, Warning, Error, Fatal };
+    public enum LoggingEventType
+    {
+        Verbose,
+        Debug,
+        Information,
+        Warning,
+        Error,
+        Fatal
+    };
 }
