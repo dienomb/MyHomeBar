@@ -1,4 +1,6 @@
-﻿namespace MyHomeBar.Logging
+﻿using System;
+
+namespace MyHomeBar.Logging
 {
     public class SerilogAdapter : ILogger
     {
